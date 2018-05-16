@@ -1,11 +1,11 @@
 <template>
   <div class="slider-wrapper">
     <template v-if="pages.length">
-      <template v-for="item in pages">
-    	  <div class="slider-item" :style="item.style">
+      <template v-for="(item, index) in pages">
+    	  <div class="slider-item" :style="item.style" :key="index">
     	    <div v-if="!item.component" v-html="item.html"></div>
           <template v-else>
-            <component :item="item" :pages="pages" :sliderinit="sliderinit" :is="item.component" ></component>
+            <component v-on="$listeners" :item="item" :pages="pages" :sliderinit="sliderinit" :is="item.component" ></component>
           </template>
     	  </div>
       </template>

@@ -12,11 +12,11 @@
       @transitionend="onTransitionEnd"
       >
       <!-- 组件在 vm.currentview 变化时改变！ -->
-      <component :pages="pages" :sliderinit="sliderinit" :basicdata="basicdata" :temporarydata="temporaryData" v-bind:is="currentView"></component>
+      <component v-on="$listeners" :pages="pages" :sliderinit="sliderinit" :basicdata="basicdata" :temporarydata="temporaryData" v-bind:is="currentView"></component>
       </div>
       <div class="slider-pagination slider-pagination-bullets">
-        <template v-for="n in pagenums">
-          <span @click='slide(n-1)' class="slider-pagination-bullet" :class="n-1 === basicdata.currentPage? 'slider-pagination-bullet-active':''"></span>
+        <template v-for="(n, index) in pagenums">
+          <span @click='slide(n-1)' class="slider-pagination-bullet" :class="n-1 === basicdata.currentPage? 'slider-pagination-bullet-active':''" :key="index"></span>
         </template>
       </div>
       <div class="slider-loading" v-show="!pagenums||temporaryData.loading">
